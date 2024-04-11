@@ -16,23 +16,81 @@ let total_time=first_second*wordLenght;
 
 let time=document.querySelector(".rt");
 
-time.innerHTML=8//total_time
+time.innerHTML=total_time
 
 
 document.querySelector(".start").addEventListener("click",function (params) {
-    let time=document.querySelector(".rt");
- increase(time)
+   this.style.display="none";
+ increase()
+
 })
 
 
-function increase(time) {
+function increase() {
     setInterval(() => {
+    let time=document.querySelector(".rt");
+    if (time.getAttribute("check") =="Undefined") {
+        
+    }else{
+
+ 
     num=  Number(time.innerHTML);
      num--;
      document.querySelector(".rt").innerHTML=num;
      if (num==0) {
-        console.log("timeup")
+     
+       time.setAttribute("check","Undefined");
+      
+      let ret= checker();
+    if (ret) {
+        document.querySelector(".message").style.display="block";
+        document.querySelector(".restart").style.display="block";
+       document.querySelector(".attempt").style.display="block";
+       document.querySelector(".drt").innerHTML=document.querySelector(".num_attempt").value;
+console.log(document.querySelector(".num_attempt").value)
+    }else{
+        document.querySelector(".tryagain").style.display="block";
+        document.querySelector(".error").style.display="block";
+    }
      }
+    }
     }, 1000);
 
 }
+
+
+function checker(params) {
+    let input=document.querySelector(".input").value;
+
+    let story=read;
+
+    if (input===story) {
+        return true;
+    }
+    else{
+       return false;
+    }
+
+}
+
+document.querySelector(".restart").addEventListener("click",function (params) {
+    window.location.reload();
+})
+
+document.querySelector(".tryagain").addEventListener("click",function (params) {
+
+    this.style.display="none";
+
+    let hiden=document.querySelector(".num_attempt");
+   let newel=Number(hiden.value) +1;
+   hiden.value=newel;
+
+//resetting time to defualt;
+   let time=document.querySelector(".rt");
+
+   time.innerHTML=total_time;
+
+   time.setAttribute("check","defined");
+   document.querySelector(".error").style.display="none";
+   
+})

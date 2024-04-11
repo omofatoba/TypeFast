@@ -114,3 +114,12 @@ margin-right: 4%;
    color: rgb(0, 94, 255);
 
 }
+
+.gh{
+    background-color: rgb(43, 226, 150);
+    display: none;
+}
+
+.attempt{
+    display: none;
+}
